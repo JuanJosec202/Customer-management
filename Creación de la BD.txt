@@ -1,0 +1,53 @@
+Comandos SQL para configurar la base de datos en postgres
+
+
+
+Crear la base de Datos:
+
+CREATE DATABASE customer_management;
+
+
+Conectarse a la base de datos
+
+\c customer_management;
+
+
+
+Crear las Tablas con las Columnas Ajustadas:
+
+-- Crear la tabla de usuarios
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    rol VARCHAR(50) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Crear la tabla de clientes
+CREATE TABLE clientes (
+    id SERIAL PRIMARY KEY,
+    nit VARCHAR(20) UNIQUE NOT NULL,
+    razon_social VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
+    usuario_creador INT REFERENCES usuarios(id),
+    estado VARCHAR(50) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+-- opcional crear datos de prueba
+
+-- Insertar datos de prueba en la tabla de usuarios
+INSERT INTO usuarios (nombre, email, password, rol)
+VALUES ('Admin', 'admin@example.com', 'admin123', 'admin');
+
+-- Insertar datos de prueba en la tabla de clientes
+INSERT INTO clientes (nit, razon_social, correo, telefono, usuario_creador, estado)
+VALUES ('123456789', 'Empresa ABC', 'contacto@empresaabc.com', '555-1234', 1, 'activo');
+

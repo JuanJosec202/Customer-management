@@ -1,0 +1,17 @@
+Crea una nueva carpeta para tu proyecto y navega dentro de ella:
+
+mkdir customer_management_backend
+cd customer_management_backend
+
+
+Inicializa un nuevo proyecto Node.js:
+npm init -y
+
+
+Instalar Dependencias Necesarias:
+npm install express sequelize pg pg-hstore body-parser
+
+
+Opcionalmente, instala nodemon para facilitar el desarrollo
+npm install --save-dev nodemon
+
